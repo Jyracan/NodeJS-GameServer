@@ -1,0 +1,23 @@
+{
+  "name": "gameserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jyracan/NodeJS-GameServer.git"
+  },
+  "author": "Jyracan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jyracan/NodeJS-GameServer/issues"
+  },
+  "homepage": "https://github.com/Jyracan/NodeJS-GameServer#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
