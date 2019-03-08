@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+	<head>
+	    <meta charset="utf-8">
+	    <title>Jeu de devinette</title>
+	    <script>
+	    	var bestScore=0;
+	    	function generateScore(){
+	    		var score = Math.floor(Math.random() * 100) + 1;
+	    		console.log(bestScore)
+	    		alert("Vous avez fait un score de " + String(score));
+	    		if(score > bestScore){
+	    			bestScore=score;
+	    		}
+	    		document.getElementById('personnalScore').innerHTML=bestScore;
+	    	}
+			
+	    </script>
+	</head>
+
+	<body>
+		<input type="button" value="Jouer !" onclick="generateScore()">
+		<p>Your best score :</p><span id=personnalScore></span>
+	</body>
+
+</html>

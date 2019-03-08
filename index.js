@@ -6,7 +6,7 @@ const port = 3000
 const path="/"
 app.use(bodyParser.urlencoded({ extended: false }))
 
-//app.use(express.static('assets'))
+app.use(express.static('assets'))
 
 //Redirection to the login page
 app.get('/', function (req, res) {
@@ -21,8 +21,14 @@ app.post('/index' , function (req, res) { //utiliser req.body.login pour attrapp
 })
 
 app.get('/devinette', function (req, res) {
-	res.sendFile(__dirname+'/jeux/devinette/devinette.html')
+	res.sendFile(__dirname+'/assets/jeux/devinette/devinette.html')
 	console.log('Lancement du jeux devinette')
+	//res.render('assets/connexion')
+}) 
+
+app.get('/randomizer', function (req, res) {
+	res.sendFile(__dirname+'/assets/jeux/randomizer/randomizer.html')
+	console.log('Lancement du jeux randomizer')
 	//res.render('assets/connexion')
 }) 
 
