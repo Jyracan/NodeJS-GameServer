@@ -5,27 +5,14 @@
 	    <meta charset="utf-8">
 	    <title>Jeu de devinette</title>
 	    <script>
-	    	setHighScore(); //We just look if work record  is already in the local storage
-	    	var worldRecord=100;
+	    	setHighScore();
+	    	var worldRecord=0;
 	    	function generateScore(){
 	    		var score = Math.floor(Math.random() * 100) + 1;
 	    		alert("Vous avez fait un score de " + String(score));
 	    		updateHighScore(score);
 	    		updateWorldRecord(score);
-	    		
 	    	}
-	    	function setHighScore(){
-	    		console.log("highscore =" + localStorage.getItem('bestScore'))
-				if(!("bestScore" in localStorage)){
-					localStorage.setItem("bestScore",0);
-				}
-			}
-			function updateHighScore(cScore){
-				if (cScore>localStorage.getItem('bestScore')) {
-					localStorage.setItem("bestScore", cScore);
-					promptBestScore();
-				}
-			}
 	    	function getWorldRecord(){
 	    		worldRecord=5;
 	    	}
@@ -35,16 +22,28 @@
 	    			promptWorldRecord();
 	    		}
 	    	}
-		function promptWorldRecord (){
-			document.getElementById('worldRecord').innerHTML=worldRecord;
-		}
-		function promptBestScore(){
-			document.getElementById('personnalScore').innerHTML=localStorage.getItem('bestScore');;
-		}
-		function init(){
-			promptBestScore();
-			promptWorldRecord();
-		}
+	    	function setHighScore(){
+				if(!("highscore" in localStorage)){
+					localStorage.setItem("highscore",0);
+				}
+			}
+
+			function updateHighScore(cScore){
+				if (cScore>localStorage.getItem('highscore')) {
+					localStorage.setItem("highscore", cScore);
+				}
+				promptHighScore();
+			}
+			function promptWorldRecord (){
+				document.getElementById('worldRecord').innerHTML=worldRecord;
+			}
+			function promptHighScore(){
+				document.getElementById('personnalScore').innerHTML=localStorage.getItem("highscore");
+			}
+			function init(){
+				promptWorldRecord();
+				promptHighScore();
+			}
 	    </script>
 	</head>
 
