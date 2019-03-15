@@ -4,6 +4,12 @@ const bodyParser=require('body-parser')
 const app = express()
 const port = 3000
 const path="/"
+
+const DataBase =require('./connectionDB.js');
+tmp = new DataBase();
+
+tmp.connectToDataBase();
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static('assets'))
