@@ -5,23 +5,53 @@
 	    <meta charset="utf-8">
 	    <title>Jeu de devinette</title>
 	    <script>
-	    	var bestScore=0;
+	    	setHighScore(); //We just look if work record  is already in the local storage
+	    	var worldRecord=100;
 	    	function generateScore(){
 	    		var score = Math.floor(Math.random() * 100) + 1;
-	    		console.log(bestScore)
 	    		alert("Vous avez fait un score de " + String(score));
-	    		if(score > bestScore){
-	    			bestScore=score;
-	    		}
-	    		document.getElementById('personnalScore').innerHTML=bestScore;
+	    		updateHighScore(score);
+	    		updateWorldRecord(score);
+	    		
 	    	}
-			
+	    	function setHighScore(){
+	    		console.log("highscore =" + localStorage.getItem('bestScore'))
+				if(!("bestScore" in localStorage)){
+					localStorage.setItem("bestScore",0);
+				}
+			}
+			function updateHighScore(cScore){
+				if (cScore>localStorage.getItem('bestScore')) {
+					localStorage.setItem("bestScore", cScore);
+					promptBestScore();
+				}
+			}
+	    	function getWorldRecord(){
+	    		worldRecord=5;
+	    	}
+	    	function updateWorldRecord(score){
+	    		if(score > worldRecord){
+	    			worldRecord = score;
+	    			promptWorldRecord();
+	    		}
+	    	}
+		function promptWorldRecord (){
+			document.getElementById('worldRecord').innerHTML=worldRecord;
+		}
+		function promptBestScore(){
+			document.getElementById('personnalScore').innerHTML=localStorage.getItem('bestScore');;
+		}
+		function init(){
+			promptBestScore();
+			promptWorldRecord();
+		}
 	    </script>
 	</head>
 
-	<body>
+	<body onload="init()">
 		<input type="button" value="Jouer !" onclick="generateScore()">
-		<p>Your best score :</p><span id=personnalScore></span>
+		<p>Your best score : <span id=personnalScore></span></p>
+		<p>World record : <span id=worldRecord> </span> </p>
 	</body>
 
 </html>
