@@ -12,7 +12,7 @@ tmp.connectToDataBase();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(express.static('assets'))
+app.use(express.static(__dirname + '/public'));
 
 //Redirection to the login page
 app.get('/', function (req, res) {
@@ -20,21 +20,22 @@ app.get('/', function (req, res) {
 	console.log('Affichage de la page de connexion')
 	//res.render('assets/connexion')
 })
+
 app.post('/index' , function (req, res) { //utiliser req.body.login pour attrapper le login
 	res.render('accueil.ejs', {login : req.body.login})
-	console.log('Affichage de la page de choix de jeu')
+	console.log('Affichage de la page de choix de jeu');
 	//res.render('assets/connexion')
 })
 
-app.get('/devinette', function (req, res) {
-	res.sendFile(__dirname+'/assets/jeux/devinette/devinette.html')
-	console.log('Lancement du jeux devinette')
+app.get('/randomizer', function (req, res) {
+	res.sendFile(__dirname+'/public/randomizer.html');
+	console.log('Lancement du jeux randomizer');
 	//res.render('assets/connexion')
 }) 
 
-app.get('/randomizer', function (req, res) {
-	res.sendFile(__dirname+'/assets/jeux/randomizer/randomizer.html')
-	console.log('Lancement du jeux randomizer')
+app.get('/cookieClicker', function (req, res) {
+	res.sendFile(__dirname+'/public/cookieClicker.html');
+	console.log('Lancement du jeux cookie clicker');
 	//res.render('assets/connexion')
 }) 
 
