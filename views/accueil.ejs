@@ -3,18 +3,17 @@
 <h1>Bonjour <%= login %></h1>
 
 <h2>Choisisez votre jeu </h2>
-	<div>
+	
+	<div id="center">
 		<h3>Jeux random</h3>
-	</div>
-	<div>
 		<form action="/randomizer" method="get" > 
-			<input id="image" type="image" width="200" height="100" alt="Randomizer" src="dice.png">
+			<input id="image" type="image" width="200" height="100" alt="Randomizer" src="/games/randomizer/dice.png">
 		</form>
 	</div>
-	<h3>Cookie Clicker</h3>
-	</div>
-	<div>
+	
+	<div id="center">
+		<h3>Cookie Clicker</h3>
 		<form action="/cookieClicker" method="get" > 
-			<input id="image" type="image" width="200" height="100" alt="Randomizer" src="cookieClicker.png">
+			<input id="image" type="image" width="200" height="100" alt="Randomizer" src="/games/cookieClicker/cookieClicker.png">
 		</form>
 	</div>

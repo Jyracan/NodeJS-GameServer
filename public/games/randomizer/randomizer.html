@@ -3,14 +3,14 @@
 
 	<head>
 	    <meta charset="utf-8">
-	    <title>Cookie Clicker</title>
+	    <link href="/css/style.css" rel="stylesheet" type="text/css">
+	    <title>Randomizer !</title>
 	    <script>
 	    	setHighScore();
 	    	var worldRecord=0;
 	    	function generateScore(){
-	    		var score = localStorage.getItem("cookiehighscore");
-	    		score++;
-	    		//alert("Vous avez fait un score de " + String(score));
+	    		var score = Math.floor(Math.random() * 100) + 1;
+	    		alert("Vous avez fait un score de " + String(score));
 	    		updateHighScore(score);
 	    		updateWorldRecord(score);
 	    	}
@@ -24,14 +24,14 @@
 	    		}
 	    	}
 	    	function setHighScore(){
-				if(!("cookiehighscore" in localStorage)){
-					localStorage.setItem("cookiehighscore",0);
+				if(!("highscore" in localStorage)){
+					localStorage.setItem("highscore",0);
 				}
 			}
 
 			function updateHighScore(cScore){
-				if (cScore>localStorage.getItem('cookiehighscore')) {
-					localStorage.setItem("cookiehighscore", cScore);
+				if (cScore>localStorage.getItem('highscore')) {
+					localStorage.setItem("highscore", cScore);
 				}
 				promptHighScore();
 			}
@@ -39,7 +39,7 @@
 				document.getElementById('worldRecord').innerHTML=worldRecord;
 			}
 			function promptHighScore(){
-				document.getElementById('personnalScore').innerHTML=localStorage.getItem("cookiehighscore");
+				document.getElementById('personnalScore').innerHTML=localStorage.getItem("highscore");
 			}
 			function init(){
 				promptWorldRecord();
@@ -50,9 +50,12 @@
 	</head>
 
 	<body onload="init()">
-		<input type="button" value="Jouer !" onclick="generateScore()">
-		<p>Your best score : <span id=personnalScore></span></p>
-		<p>World record : <span id=worldRecord> </span> </p>
+		<h1>Randomizer</h1>
+		<div id="center">
+			<input type="button" value="Jouer !" onclick="generateScore()">
+			<p>Your best score : <span id=personnalScore></span></p>
+			<p>World record : <span id=worldRecord> </span> </p>
+		</div>
 	</body>
 
 </html>
