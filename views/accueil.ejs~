@@ -1,8 +1,0 @@
-<h1>Bonjour <%= login %> </h1>
-
-<h2>Choisisez votre jeu </h2>
-	<div>
-		<form action="/devinette" method="get" > 
-			<input id="image" type="image" width="200" height="100" alt="Login" src="http://www.mpt-barsuraube.fr/wp-content/uploads/2017/10/dice.png">
-		</form>
-	</div>
