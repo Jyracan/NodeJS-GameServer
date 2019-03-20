@@ -1,6 +1,6 @@
 class connection{
 	constructor(){
-		console.log("\nDébut Connexion");
+		console.log('Lancement du gestionnaire de DB');
 	}
 	connectToDataBase(){
 		var mongoose = require('mongoose');
