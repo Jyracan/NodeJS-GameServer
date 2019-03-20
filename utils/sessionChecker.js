@@ -10,16 +10,13 @@ class sessionChecker{
 		res.redirect('/index')
 	}
 	logout (req, res) {
-		user_identifier=req.body.login
-		console.log('Identification de l\'utilisateur ' + this.user_identifier)
-		res.cookie('session', 'True')
-		res.redirect('/index')
+		this.user_identifier=''
+		console.log('Suppression du cookie de session')
+		res.cookie('session', 'False')
+		res.redirect('/')
 	}
 	check (req, res) {
-		user_identifier=req.body.login
-		console.log('Identification de l\'utilisateur ' + this.user_identifier)
-		res.cookie('session', 'True')
-		res.redirect('/index')
+		// TODO : Si le cookie de session est à false on redirige a /
 	}
 
 }

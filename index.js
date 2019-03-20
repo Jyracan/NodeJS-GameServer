@@ -28,6 +28,9 @@ app.get('/', function (req, res) {
 app.post('/login', function (req,res){
 	sessionChecker.login(req,res)	
 })
+app.post('/logout', function (req,res){
+	sessionChecker.logout(req,res)	
+})
 
 app.get('/index' , function (req, res) {
 	res.render('accueil.ejs', {login : sessionChecker.user_identifier})
