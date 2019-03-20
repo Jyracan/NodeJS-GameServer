@@ -33,18 +33,21 @@ app.post('/logout', function (req,res){
 })
 
 app.get('/index' , function (req, res) {
+	sessionChecker.check()
 	res.render('accueil.ejs', {login : sessionChecker.user_identifier})
 	console.log('post accueil');
 	//res.render('assets/connexion')
 })
 
 app.get('/randomizer', function (req, res) {
+	sessionChecker.check()
 	res.sendFile(__dirname+'/public/games/randomizer/randomizer.html');
 	console.log('get jeux.randomizer');
 	//res.render('assets/connexion')
 }) 
 
 app.get('/cookieClicker', function (req, res) {
+	sessionChecker.check()
 	res.sendFile(__dirname+'/public/games/cookieClicker/cookieClicker.html');
 	console.log('get jeux.cookieClicker');
 	//res.render('assets/connexion')
