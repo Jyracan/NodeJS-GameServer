@@ -1,9 +1,10 @@
 # TODO list projet NodeJS :
-|             Tâche             | Difficulté | Responsable | Réalisé |
-|:-----------------------------:|:----------:|:-----------:|---------|
-| Connexion à la base de donnée |     ***    |             |         |
-|   Remplir la base de donnée   |     **     |             |         |
-|     Màj la base de donnée     |     **     |             |         |
-|       Ajouter un cookie       |      *     |    Cyril    |    X    |
-|       Enlever un cookie       |      *     |    Cyril    |    X    |
-|       Vérifier un cookie      |      *     |             |         |
+ - [] Mettre le nom de l'utilisateur dans le cookie ...
+ - [] Faire une redirection quand l'utilisateur arrive sur le site à une addresse du genre '/' ...
+ - [] Faire des redirections si pas de cookie de session 
+ - [X] Créer un dossier routes pour alléger l'index.js
+ - [] Gérer la connexion à la base de donnée
+ - [] Envoyer les informations à la base de donnée après une partie via un POST
+ - [] réaliser de la doc (README ?)
+ - 
+ 

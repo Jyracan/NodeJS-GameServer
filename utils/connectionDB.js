@@ -5,18 +5,16 @@ class connection{
 	connectToDataBase(){
 		var mongoose = require('mongoose');
 		const uri = "mongodb+srv://admin:Admin123!@game-server-qgt19.mongodb.net/test?retryWrites=true";
-
-		mongoose.connect(uri,function(err){
-			
-		  	console.log("Connexion réussie !");
-		});
+		mongoose.connect(uri,{ useNewUrlParser: true });
 		var schema = new mongoose.Schema({ game : String, highScore : Number});
 		var highScoreModel = mongoose.model('databaseServer', schema);
 		var test = new highScoreModel({game : 'Randomizer', highScore : 2});
 	  	test.save(function (err){
-	  		console.log("Insertion d'un objet dans la base de donnée");
+	  		console.log("Erreur lors de l'insertion !");
 	  	});
 		mongoose.connection.close();
+		console.log('Fermeture de la DB')
+
 	}
 }
 
