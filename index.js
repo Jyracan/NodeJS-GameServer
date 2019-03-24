@@ -35,12 +35,15 @@ app.use(cookieClicker)
 //console.log('Loading cookieParser')
 
 
-// Cookie parser permet de lire les cookies dans le navigateur
-//TODO : Voir pourquoi app.use(cookieParser) fait planter le site ...
 
 
 /** Création d'un domaine public pour les ressources comme les images CSS et jeux*/
 app.use(express.static(__dirname + '/public'));
+
+// Cookie parser permet de lire les cookies dans le navigateur
+//TODO : Voir pourquoi app.use(cookieParser) fait planter le site ...
+// Attention si on place cette ligne au dessus le serveur plante ???
+app.use(cookieParser)
 
 /** Redirection vers la page de login*/ 
 app.get('/', function (req, res) {
@@ -48,5 +51,4 @@ app.get('/', function (req, res) {
 })
 
 app.listen(port, () => console.log('\nhttp://localhost:'+port+path))
-// Attention si on place cette ligne ailleurs le serveur plante ...
-app.use(cookieParser)
+

@@ -3,10 +3,10 @@ const sessionChecker = require('../utils/sessionChecker');
 const router = express.Router();
 
 router.get('/index' , function (req, res) {
-	sessionChecker.check()
+	console.log('post accueil ' + req);
+	console.log('cookies ' + req.cookies)
+	sessionChecker.check(req,res)
 	res.render('accueil.ejs', {login : sessionChecker.user_identifier})
-	console.log('post accueil');
-	//res.render('assets/connexion')
 })
 
 module.exports = router
