@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/cookieClicker', function (req, res) {
 	sessionChecker.check()
-	res.sendFile(__dirname+'/public/games/cookieClicker/cookieClicker.html');
+	res.sendFile('public/games/cookieClicker/cookieClicker.html', { root : __dirname +'/..'});
 	console.log('get jeux.cookieClicker');
 	//res.render('assets/connexion')
 }) 
