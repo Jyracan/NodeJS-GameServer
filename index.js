@@ -1,6 +1,7 @@
 // Import
 const express = require('express')
 const bodyParser=require('body-parser')
+const cookieParser = require('cookie-parser') // Module pour lire cookie dans le navigateur
 const DataBase =require('./utils/connectionDB.js')
 const SessionChecker = require('./utils/sessionChecker.js')
 const login = require('./routes/login')
@@ -18,17 +19,30 @@ const path="/"
 //tmp.connectToDataBase();
 //---------------------------
 
+
 // Qu'es ce que ça fait déjà ?
+console.log('Loading bodyParser')
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // On indique à l'application qu'elle pourra utiliser les routes suivantes :
+console.log('Loading Routes')
 app.use(login)
 app.use(logout)
 app.use(menu)
 app.use(randomizer)
 app.use(cookieClicker)
 
+// Cookie parser permet de lire les cookies dans le navigateur
+//TODO : Voir pourquoi app.use(cookieParser) fait planter le site ...
+//console.log('Loading cookieParser')
+//app.use(cookieParser)
+
 // Création d'un domaine public pour les ressources comme les images CSS et jeux
 app.use(express.static(__dirname + '/public'));
+
+// redirection vers la page de login 
+app.get('/', function (req, res) {
+	res.redirect('/login')
+})
 
 app.listen(port, () => console.log('\nhttp://localhost:'+port+path))
