@@ -1,7 +1,7 @@
-// Import
+/** Import*/
 const express = require('express')
 const bodyParser=require('body-parser')
-const cookieParser = require('cookie-parser') // Module pour lire cookie dans le navigateur
+const cookieParser = require('cookie-parser') /** Module pour lire cookie dans le navigateur*/
 const DataBase =require('./utils/connectionDB.js')
 const SessionChecker = require('./utils/sessionChecker.js')
 const login = require('./routes/login')
@@ -20,11 +20,11 @@ const path="/"
 //---------------------------
 
 
-// Qu'es ce que ça fait déjà ?
+/** Lire le corps d'une requête (post) http*/
 console.log('Loading bodyParser')
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// On indique à l'application qu'elle pourra utiliser les routes suivantes :
+/** On indique à l'application qu'elle pourra utiliser les routes suivantes :*/
 console.log('Loading Routes')
 app.use(login)
 app.use(logout)
@@ -37,10 +37,10 @@ app.use(cookieClicker)
 console.log('Loading cookieParser')
 app.use(cookieParser)
 
-// Création d'un domaine public pour les ressources comme les images CSS et jeux
+/** Création d'un domaine public pour les ressources comme les images CSS et jeux*/
 app.use(express.static(__dirname + '/public'));
 
-// redirection vers la page de login 
+/** Redirection vers la page de login*/ 
 app.get('/', function (req, res) {
 	res.redirect('/login')
 })
