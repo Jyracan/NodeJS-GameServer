@@ -1,13 +1,14 @@
 exports.login = function (req, res) {
 	//this.user_identifier=req.body.login
 	console.log('Identification de l\'utilisateur ')
-	res.cookie('session', 'True', 'hello')
+	res.cookie('session', 'True', { maxAge: 900000, httpOnly: true })
+	res.cookie('userName',req.body.login, { maxAge: 900000, httpOnly: true })
 	res.redirect('/index')
 }
 exports.logout = function (req, res) {
 	this.user_identifier=''
 	console.log('Suppression du cookie de session')
-	res.cookie('session', 'False', 'hello')
+	res.clearCookie('session')
 	res.redirect('/login')
 }
 exports.check = function (req, res) {
