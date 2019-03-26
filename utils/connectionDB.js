@@ -1,8 +1,4 @@
-class connection{
-	constructor(){
-		console.log('Lancement du gestionnaire de DB');
-	}
-	connectToDataBase(){
+exports.addUser = function (userName) {
 		var mongoose = require('mongoose');
 		const uri = "mongodb+srv://admin:Admin123!@game-server-qgt19.mongodb.net/test?retryWrites=true";
 		mongoose.connect(uri,{ useNewUrlParser: true });
@@ -14,8 +10,6 @@ class connection{
 	  	});
 		mongoose.connection.close();
 		console.log('Fermeture de la DB');
-
-	}
 }
 
 module.exports = connection;

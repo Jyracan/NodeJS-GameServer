@@ -1,7 +1,8 @@
 /** Import*/
 const express = require('express');
 const bodyParser=require('body-parser');
-const cookieParser = require('cookie-parser'); /** Module pour lire cookie dans le navigateur*/
+/** Module pour lire cookie dans le navigateur*/
+const cookieParser = require('cookie-parser'); 
 const DataBase =require('./utils/connectionDB.js');
 const SessionChecker = require('./utils/sessionChecker.js');
 const login = require('./routes/login');
@@ -21,16 +22,17 @@ const path="/";
 
 //
 
-/** Lire le corps d'une requête (post) http*/
+
 console.log('Loading bodyParser');
+/** Lire le corps d'une requête (post) http*/
 app.use(bodyParser.urlencoded({ extended: false }));
 
-/** Cookie parser permet de lire les cookies dans le navigateur*/
 console.log('Loading cookie-parser');
+/** Cookie parser permet de lire les cookies dans le navigateur*/
 app.use(cookieParser());
 
-/** On indique à l'application qu'elle pourra utiliser les routes suivantes :*/
 console.log('Loading Routes');
+/** On indique à l'application qu'elle pourra utiliser les routes suivantes :*/
 app.use(login);
 app.use(logout);
 app.use(menu);
