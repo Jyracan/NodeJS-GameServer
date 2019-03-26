@@ -27,7 +27,6 @@ exports.checkUser = function(userName){
         	console.log('Trouvé !');
         	flag=true;
         }
-	console.log(flag);
         return flag;
 
     });
