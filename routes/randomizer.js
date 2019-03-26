@@ -7,7 +7,7 @@ router.get('/randomizer', function (req, res) {
 		res.sendFile('public/games/randomizer/randomizer.html', { root : __dirname +'/..'});
 		console.log('get jeux.randomizer');
 	}
-}) 
+});
 
 
-module.exports = router
+module.exports = router;
