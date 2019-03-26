@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const User = mongoose.model('User');
+const sessionChecker = require('../utils/sessionChecker');
 
 exports.addUser = function (userName) {
 	var myUser = new User({
@@ -14,7 +15,7 @@ exports.addUser = function (userName) {
   	});
 }
 
-exports.checkUser = function(userName){
+exports.checkUser = function(userName,req,res){
 	console.log('Est-ce que ' + userName + ' est dans la BDD ?');
 	User.findOne({name : userName}, function(err, theUser) {
 		flag = false;
@@ -23,11 +24,10 @@ exports.checkUser = function(userName){
         }
         if(theUser === null){
         	console.log('Non ...');
+        	res.send('Veuillez vous enregistrer pour accéder au site.');
         }else{
         	console.log('Trouvé !');
-        	flag=true;
+        	sessionChecker.login(req,res);
         }
-        return flag;
-
     });
 }
