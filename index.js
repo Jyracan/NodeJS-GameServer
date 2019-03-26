@@ -35,11 +35,12 @@ app.use(randomizer)
 app.use(cookieClicker)
 
 //console.log('Loading cookieParser')
-
+/*
 app.use((req, res, next) => {
 	console.log('test next')
     next();
 });
+*/
 
 
 
