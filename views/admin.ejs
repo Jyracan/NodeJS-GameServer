@@ -10,9 +10,16 @@
 	<body>
 		<h1>Pseudo à Bannir</h1>
 		<div id="center">
-			<form action="/admin" method="post"> 
-				<input type="value" name="login">
-				<input type="submit" name="send" value="Bannir">
+			<form action="/admin/ban" method="post"> 
+				<input type="value" name="loginB">
+				<input type="submit" name="send" value="Ban">
+			</form>
+		</div>
+		<h1>Pseudo à Blanchir</h1>
+		<div id="center">
+			<form action="/admin/unban" method="post"> 
+				<input type="value" name="loginU">
+				<input type="submit" name="send" value="Unban">
 			</form>
 		</div>
 	</body>

@@ -64,7 +64,11 @@ exports.banUser = function(userName){
 		if (err){
             console.log(err);
         }else{
-        	theUser.isBanned =true;
+			User.updateOne( { name : userName}, {isBanned : true }, function(err) {
+				if ( err) {
+					 console.log(err);
+				}
+			});
         }
 	});
 }
@@ -73,7 +77,11 @@ exports.unBanUser = function(userName){
 		if (err){
             console.log(err);
         }else{
-        	theUser.isBanned =false;
+			User.updateOne( { name : userName}, {isBanned : false }, function(err) {
+				if ( err) {
+					 console.log(err);
+				}
+			});
         }
 	});
 }
