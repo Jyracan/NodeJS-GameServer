@@ -6,7 +6,8 @@ exports.addUser = function (userName) {
 	var myUser = new User({
 		name : userName,
 		randomizer : 0,
-		cookieClicker : 0
+		cookieClicker : 0,
+		isBanned : false
 	});
 	myUser.save(function (err){
   		if(err !=null){
@@ -30,4 +31,23 @@ exports.checkUser = function(userName,req,res){
         	sessionChecker.login(req,res);
         }
     });
+}
+
+exports.banUser = function(userName){
+	User.findOne({name : userName}, function(err, theUser) {
+		if (err){
+            console.log(err);
+        }else{
+        	theUser.isBanned =true;
+        }
+	});
+}
+exports.unBanUser = function(userName){
+	User.findOne({name : userName}, function(err, theUser) {
+		if (err){
+            console.log(err);
+        }else{
+        	theUser.isBanned =false;
+        }
+	});
 }
