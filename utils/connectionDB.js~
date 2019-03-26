@@ -6,7 +6,8 @@ exports.addUser = function (userName) {
 	var myUser = new User({
 		name : userName,
 		randomizer : 0,
-		cookieClicker : 0
+		cookieClicker : 0,
+		isBanned : false
 	});
 	myUser.save(function (err){
   		if(err !=null){
@@ -34,6 +35,7 @@ exports.checkUser = function(userName,req,res){
     });
 }
 
+<<<<<<< HEAD
 exports.updateUser = function(userName, score, game ){
 	console.log(' Mise à jour de score de ' + userName + ' dans la BDD pour le jeu : '+ game);
 	
@@ -57,3 +59,23 @@ exports.updateUser = function(userName, score, game ){
 }
 	
 	
+=======
+exports.banUser = function(userName){
+	User.findOne({name : userName}, function(err, theUser) {
+		if (err){
+            console.log(err);
+        }else{
+        	theUser.isBanned =true;
+        }
+	});
+}
+exports.unBanUser = function(userName){
+	User.findOne({name : userName}, function(err, theUser) {
+		if (err){
+            console.log(err);
+        }else{
+        	theUser.isBanned =false;
+        }
+	});
+}
+>>>>>>> 577e72d8ce31d450ce608cdb95239e2ce7c78c4f

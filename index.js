@@ -18,7 +18,7 @@ const menu = require('./routes/menu');
 const randomizer = require('./routes/randomizer');
 const cookieClicker = require('./routes/cookieClicker');
 const register = require('./routes/register');
-
+const admin = require('./routes/admin');
 
 const app = express();
 const port = 3000;
@@ -41,6 +41,7 @@ app.use(menu);
 app.use(randomizer);
 app.use(cookieClicker);
 app.use(register);
+app.use(admin);
 
 /** Création d'un domaine public pour les ressources comme les images CSS et jeux*/
 app.use(express.static(__dirname + '/public'));

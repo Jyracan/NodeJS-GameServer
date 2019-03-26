@@ -1,11 +1,9 @@
 const express = require('express');
-const sessionChecker = require('../utils/sessionChecker');
 const router = express.Router();
 const DataBase =require('../utils/connectionDB.js');
 
 router.get('/login', function (req, res) {
 	res.render('connection.ejs');
-	console.log('get connexion');
 });
 router.post('/login', function (req,res){
 	DataBase.checkUser(req.body.login, req, res);
