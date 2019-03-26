@@ -29,11 +29,31 @@ exports.checkUser = function(userName,req,res){
         	console.log('Trouvé !');
         	sessionChecker.login(req,res);
         }
-<<<<<<< HEAD
-	console.log(flag);
-        return flag;
+       
 
-=======
->>>>>>> ba88cd3c18d043d3ecd9436feb5a3848054e8a80
     });
 }
+
+exports.updateUser = function(userName, score, game ){
+	console.log(' Mise à jour de score de ' + userName + ' dans la BDD pour le jeu : '+ game);
+	
+	if (game === 'randomizer'){
+		User.updateOne( { name : userName}, {randomizer : score }, function(err) {
+										if ( err) {
+											 throw err;
+										 } 
+										console.log('Score du randomizer modifié');
+									});
+	} else if ( game === 'cookieCliker') {
+		User.updateOne( { name : userName}, {cookieCliker : score },function(err) {
+										if ( err) {
+											 throw err;
+										 } 
+										console.log('Score du cookieCliker modifié');
+									});
+	} else {
+		console.log('ce jeu n existe pas');
+	}
+}
+	
+	

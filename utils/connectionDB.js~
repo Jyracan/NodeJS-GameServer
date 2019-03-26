@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const User = mongoose.model('User');
+const sessionChecker = require('../utils/sessionChecker');
 
 exports.addUser = function (userName) {
 	var myUser = new User({
@@ -14,7 +15,7 @@ exports.addUser = function (userName) {
   	});
 }
 
-exports.checkUser = function(userName){
+exports.checkUser = function(userName,req,res){
 	console.log('Est-ce que ' + userName + ' est dans la BDD ?');
 	User.findOne({name : userName}, function(err, theUser) {
 		flag = false;
@@ -23,11 +24,36 @@ exports.checkUser = function(userName){
         }
         if(theUser === null){
         	console.log('Non ...');
+        	res.send('Veuillez vous enregistrer pour accéder au site.');
         }else{
         	console.log('Trouvé !');
-        	flag=true;
+        	sessionChecker.login(req,res);
         }
-        return flag;
+       
 
     });
 }
+
+exports.updateUser = function(userName, score, game ){
+	console.log(' Mise à jour de score de ' + userName + ' dans la BDD pour le jeu : '+ game);
+	
+	if (game === 'randomizer'){
+		User.updateOne( { name : userName}, {randomizer : score }, function(err) {
+										if ( err) {
+											 throw err;
+										 } 
+										console.log('Score du randomizer modifié');
+									});
+	} else if ( game === 'cookieCliker') {
+		User.updateOne( { name : userName}, {cookieCliker : score },function(err) {
+										if ( err) {
+											 throw err;
+										 } 
+										console.log('Score du cookieCliker modifié');
+									});
+	} else {
+		console.log('ce jeu n existe pas');
+	}
+}
+	
+	
