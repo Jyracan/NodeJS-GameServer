@@ -14,8 +14,12 @@ exports.logout = function (req, res) {
 exports.check = function (req, res) {
 	// TODO : Si le cookie de session est à false on redirige a '/'
 	console.log('###\nTest de routine du cookie de session ...');
-	console.log('cookies ' + req.cookies.userName)
-	//flag=false
+	if(req.cookies.userName === undefined){
+		console.log('Redirection vers page de login ...\n###');
+		res.redirect('/login');
+		return false
+	}
 	console.log('Fin\n###');
+	return true
 
 }

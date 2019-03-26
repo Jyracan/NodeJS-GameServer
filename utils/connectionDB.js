@@ -13,7 +13,7 @@ class connection{
 	  		console.log("Erreur lors de l'insertion !");
 	  	});
 		mongoose.connection.close();
-		console.log('Fermeture de la DB')
+		console.log('Fermeture de la DB');
 
 	}
 }
