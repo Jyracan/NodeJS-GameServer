@@ -19,10 +19,12 @@ const path="/"
 //tmp.connectToDataBase();
 //---------------------------
 
+//
 
 /** Lire le corps d'une requête (post) http*/
 console.log('Loading bodyParser')
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
 
 /** On indique à l'application qu'elle pourra utiliser les routes suivantes :*/
 console.log('Loading Routes')
@@ -34,20 +36,24 @@ app.use(cookieClicker)
 
 //console.log('Loading cookieParser')
 
+app.use((req, res, next) => {
+	console.log('test next')
+    next();
+});
 
 
 
 /** Création d'un domaine public pour les ressources comme les images CSS et jeux*/
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 
 // Cookie parser permet de lire les cookies dans le navigateur
 //TODO : Voir pourquoi app.use(cookieParser) fait planter le site ...
 // Attention si on place cette ligne au dessus le serveur plante ???
-app.use(cookieParser)
+
 
 /** Redirection vers la page de login*/ 
 app.get('/', function (req, res) {
-	res.redirect('/login')
+	res.redirect('/login');
 })
 
 app.listen(port, () => console.log('\nhttp://localhost:'+port+path))

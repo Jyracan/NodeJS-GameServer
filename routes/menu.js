@@ -6,7 +6,7 @@ router.get('/index' , function (req, res) {
 	console.log('post accueil ' + req);
 	console.log('cookies ' + req.cookies)
 	sessionChecker.check(req,res)
-	res.render('accueil.ejs', {login : sessionChecker.user_identifier})
+	res.render('accueil.ejs', {login : req.cookies.userName})
 })
 
 module.exports = router
