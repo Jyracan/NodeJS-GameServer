@@ -52,5 +52,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
 	res.redirect('/login');
 })
+const test = require('./utils/connectionDB.js');
 
+console.log(test.scoreUser('Geronimo', 'randomizer'));
 app.listen(port, () => console.log('\nhttp://localhost:'+port+path));
