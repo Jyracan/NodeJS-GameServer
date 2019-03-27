@@ -17,6 +17,4 @@ router.post('/admin/:id', function (req,res){
 		res.send(req.body.loginU + ' pourra à nouveau jouer');
 	}
 });
-router.delete('/admin', function (req,res){
-});
 module.exports = router;

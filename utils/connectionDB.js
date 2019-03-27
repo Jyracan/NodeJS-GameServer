@@ -28,10 +28,12 @@ exports.checkUser = function(userName,req,res){
         	res.send('Veuillez vous enregistrer pour accéder au site.');
         }else{
         	console.log('Trouvé !');
-        	sessionChecker.login(req,res);
+        	if(theUser.isBanned == false){
+				sessionChecker.login(req,res);
+			}else{
+				res.send('L\'utilisateur ' + userName + ' est blacklisté !');
+			}
         }
-       
-
     });
 }
 
@@ -41,18 +43,18 @@ exports.updateUser = function(userName, score, game ){
 	
 	if (game === 'randomizer'){
 		User.updateOne( { name : userName}, {randomizer : score }, function(err) {
-										if ( err) {
-											 throw err;
-										 } 
-										console.log('Score du randomizer modifié');
-									});
+			if ( err) {
+				 throw err;
+			 } 
+			console.log('Score du randomizer modifié');
+		});
 	} else if ( game === 'cookieCliker') {
 		User.updateOne( { name : userName}, {cookieCliker : score },function(err) {
-										if ( err) {
-											 throw err;
-										 } 
-										console.log('Score du cookieCliker modifié');
-									});
+		if ( err) {
+			 throw err;
+		 } 
+		console.log('Score du cookieCliker modifié');
+	});
 	} else {
 		console.log('ce jeu n existe pas');
 	}
