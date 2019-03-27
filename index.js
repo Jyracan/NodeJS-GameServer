@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://admin:Admin123!@game-server-qgt19.mongodb.net/test?retryWrites=true";
+const config = require('./config');
+const uri = "mongodb+srv://"+config.id+":"+config.password+"!@game-server-qgt19.mongodb.net/test?retryWrites=true";
 console.log('Connection to a Data Base');		
 mongoose.connect(uri,{ useNewUrlParser: true });
 require('./models/User');
