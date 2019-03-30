@@ -4,7 +4,7 @@ const uri = "mongodb+srv://"+config.id+":"+config.password+"!@game-server-qgt19.
 console.log('Connection to a Data Base');		
 mongoose.connect(uri,{ useNewUrlParser: true });
 require('./models/User');
-
+require('./models/Scores');
 
 // Import
 const express = require('express');
@@ -52,7 +52,5 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
 	res.redirect('/login');
 })
-const test = require('./utils/connectionDB.js');
 
-console.log(test.scoreUser('Geronimo', 'randomizer'));
 app.listen(port, () => console.log('\nhttp://localhost:'+port+path));

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+	<head>
+	    <meta charset="utf-8">
+	    <link href="/css/style.css" rel="stylesheet" type="text/css">
+
+	    <title>Cookie Clicker</title>
+	    <script>
+	    	var worldRecord=<%= Worldscore %>;
+	    	var score = localStorage.getItem("cookiehighscore");
+	    	console.log('Mon score = ' + score)
+	    	console.log('worldScore = ' + worldRecord)
+
+
+			function setHighScore(){
+				if(!("cookiehighscore" in localStorage)){
+					localStorage.setItem("cookiehighscore",0);
+				}
+			}
+			function sendScore(){
+				document.getElementById('scoretosend').value = score;
+			}
+	    	function generateScore(){
+	    		score++;
+	    		if(!("cookiehighscore" in localStorage)){
+					localStorage.setItem("cookiehighscore",0);
+				}
+	    		localStorage.setItem("cookiehighscore", score);
+	    		sendScore();
+	    	}	
+			function promptWorldRecord (){
+	    		console.log('worldScore = ' + worldRecord)
+				document.getElementById('worldRecord').innerHTML=worldRecord;	
+			}
+			function promptHighScore(){
+				console.log('Mon score = ' + score)
+				document.getElementById('personnalScore').innerHTML=score;
+			}
+			function init(){
+				promptWorldRecord();
+				promptHighScore();
+			}
+			
+	    </script>
+	</head>
+
+	<body onload="init()">
+		<h1>Cookie Clicker</h1>
+		<div id="center">
+			<div id="center">
+				<form action="/cookieClicker" method="post"> 
+					<input id="scoretosend" name="scoretosend" type="hidden" >
+					<input type="submit" name="send" value="Jouer !" onclick="generateScore()">
+				</form>
+			</div>
+			<p>Your best score : <span id=personnalScore></span></p>
+			<p>World record : <span id=worldRecord></span> </p>
+		</div>
+	</body>
+
+</html>

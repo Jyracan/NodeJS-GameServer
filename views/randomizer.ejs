@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+	<head>
+	    <meta charset="utf-8">
+	    <link href="/css/style.css" rel="stylesheet" type="text/css">
+	    <title>Randomizer !</title>
+	    <script>
+	    	/**
+	    	* We create a hightscore in the local storage
+	    	**/
+	    	if(!("highscore" in localStorage)){
+					localStorage.setItem("highscore",0);
+			}
+			/**
+			* We retieve the value of the worldScore
+	    	**/
+	    	var worldRecord=<%= Worldscore %>;
+
+	    	/**
+	    	* Generation of the score : generation of a number betwen 1 and 100
+	    	* Then send it to the server
+	    	**/
+	    	function generateScore(){
+	    		var score = Math.floor(Math.random() * 100) + 1;
+	    		alert("Vous avez fait un score de " + String(score));
+	    		sendScore(score);
+	    	}
+
+	    	/**
+	    	* A little function to prompt the world record
+	    	**/
+			function promptWorldRecord (){
+				document.getElementById('worldRecord').innerHTML=worldRecord;
+			}
+			/**
+	    	* A little function to prompt the score of the iser
+	    	**/
+			function promptHighScore(){
+				document.getElementById('personnalScore').innerHTML=localStorage.getItem("highscore");
+			}
+			/**
+			* This function fill an input to send the value of the score made by the user to the server
+			**/
+			function sendScore(score){
+				if(score>localStorage.getItem("highscore")){
+					localStorage.setItem("highscore", score);
+				document.getElementById('scoretosend').value = score;
+			}else{
+
+				document.getElementById('scoretosend').value = localStorage.getItem("highscore");
+			}
+			}
+			/**
+	    	* A function to prompt all the scores
+	    	**/
+			function init(){
+				promptWorldRecord();
+				promptHighScore();
+			}
+			
+	    </script>
+	</head>
+
+	<body onload="init()">
+		<h1>Randomizer</h1>
+		<div id="center">
+			<form action="/randomizer" method="post"> 
+					<input id="scoretosend" name="scoretosend" type="hidden" >
+					<input type="submit" name="send" value="Jouer !" onclick="generateScore()">
+				</form>
+			<p>Your best score : <span id=personnalScore> </span></p>
+			<p>World record : <span id=worldRecord></span> </p>
+		</div>
+	</body>
+
+</html>
