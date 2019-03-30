@@ -2,9 +2,16 @@ const express = require('express');
 const router = express.Router();
 const DataBase =require('../utils/connectionDB.js');
 
+/**
+* We serve the admin page
+**/
 router.get('/admin', function (req, res) {
 	res.render('admin.ejs');
 });
+/**
+* This route is called when the admin want to ban or unban a user
+* We user the 'id' to check what the admin want to do
+**/
 router.post('/admin/:id', function (req,res){
 	id=req.params.id
 	if(id=='ban'){
